@@ -1,0 +1,9 @@
+LOAD Student
+LOAD Advisor
+cS <- PROJECT  Stud_Id, Advisor_id, Stud_sex FROM Student
+cA <- PROJECT Adv_Id, Adv_sex FROM Advisor
+cR1 <- CROSS cS cA
+cR2 <- SELECT Advisor_id == Adv_Id FROM cR1
+cR3 <- SELECT Stud_sex != Adv_sex FROM cR2
+cR4 <- PROJECT Stud_Id, Advisor_id, Stud_sex, Adv_sex FROM cR3
+PRINT cR4

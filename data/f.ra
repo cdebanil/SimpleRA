@@ -1,0 +1,7 @@
+LOAD Student
+LOAD Marks
+LOAD Advisor
+F1 <- SELECT Yrs_of_exp <= 4 FROM Advisor
+F2 <- SELECT Salary > 300000 FROM F1
+F <- PROJECT Adv_Id,Yrs_of_exp FROM F2
+PRINT F

@@ -1,0 +1,14 @@
+LOAD Student
+LOAD Advisor
+LOAD Marks
+eS <- PROJECT Stud_Id, Advisor_id, Stud_sex FROM Student
+eA <- PROJECT Adv_Id FROM Advisor
+eM <- PROJECT Stud_Id, Maths_marks FROM Marks
+eR1 <- CROSS eS eA
+eR2 <- SELECT Advisor_id == Adv_Id FROM eR1
+eR3 <- CROSS eR2 eM
+eR4 <- SELECT eR2_Stud_Id == eM_Stud_Id FROM eR3
+eR5 <- SELECT Stud_sex == 1 FROM eR4
+eR6 <- SELECT Advisor_id == 1 FROM eR5
+eR7 <- SELECT Maths_marks > 70 FROM eR6
+PRINT eR7
